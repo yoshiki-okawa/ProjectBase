@@ -1,0 +1,8 @@
+﻿<div class="container" style="padding: 50px 20px" ng-init="Logout()">
+	<div class="alert alert-info" ng-show="serverErrorMsg.length == 0">
+		Logging out...
+	</div>
+	<div class="alert alert-danger" ng-show="serverErrorMsg.length > 0">
+		{{serverErrorMsg}}
+	</div>
+</div>

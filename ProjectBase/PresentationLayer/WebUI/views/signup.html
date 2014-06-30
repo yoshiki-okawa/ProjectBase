@@ -1,0 +1,53 @@
+﻿<div class="container" style="padding: 50px 20px" ng-init="AutoLogin()">
+	<h2>Sign-up</h2>
+	<form name="signupForm" class="form-horizontal" role="form" ng-submit="Submit()" ng-hide="isSubmitted" novalidate>
+		<div class="form-group">
+			<label for="signupForm_userName" class="col-sm-2 control-label">UserName</label>
+			<div class="col-sm-5 has-feedback" ng-class="{ 'has-error' : signupForm.userName.blurred && signupForm.userName.$invalid, 'has-success' : signupForm.userName.blurred && signupForm.userName.$valid && !userNameCheck.isChecking }">
+				<input type="text" class="form-control" name="userName" id="signupForm_userName" placeholder="UserName" ng-model="formData.userName" ng-blur="OnUserNameBlur(signupForm.userName);" ng-focus="OnUserNameFocus(signupForm.userName)" ng-pattern="/^[0-9a-zA-Z_\.\-]+$/" ng-minlength="3" ng-maxlength="50" ng-disabled="userNameCheck.isChecking" required />
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="signupForm.userName.$valid && signupForm.userName.blurred && !userNameCheck.isChecking"></span>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.userName.blurred && signupForm.userName.$invalid"></span>
+				<p ng-show="signupForm.userName.blurred && signupForm.userName.$error.required" class="help-block">Please enter your username.</p>
+				<p ng-show="signupForm.userName.blurred && (signupForm.userName.$error.minlength || signupForm.userName.$error.maxlength)" class="help-block">Username must be between 3 and 50 characters.</p>
+				<p ng-show="signupForm.userName.blurred && !(signupForm.userName.$error.minlength || signupForm.userName.$error.maxlength) && signupForm.userName.$invalid" class="help-block">Username can only contain letters, numbers, dashes '-', underscores '_', and periods '.'.</p>
+				<p ng-show="userNameCheck.isChecking" class="help-block">Checking username...</p>
+				<p ng-show="signupForm.userName.$error.userNameUniqueness" class="help-block">This username is already taken.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="signupForm_email" class="col-sm-2 control-label">E-mail</label>
+			<div class="col-sm-5 has-feedback" ng-class="{ 'has-error' : signupForm.email.blurred && signupForm.email.$invalid, 'has-success' : signupForm.email.blurred && signupForm.email.$valid && !emailCheck.isChecking }">
+				<input type="text" class="form-control" name="email" id="signupForm_email" placeholder="E-mail" ng-model="formData.email" ng-blur="OnEmailBlur(signupForm.email)" ng-focus="OnEmailFocus(signupForm.email)" ng-disabled="emailCheck.isChecking" ng-pattern="/^\S+@\S+\.\S+$/" ng-minlength="3" ng-maxlength="254" required />
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="signupForm.email.$valid && signupForm.email.blurred"></span>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.email.blurred && signupForm.email.$invalid && !emailCheck.isChecking"></span>
+				<p ng-show="signupForm.email.blurred && signupForm.email.$error.required" class="help-block">Please enter your e-mail address.</p>
+				<p ng-show="signupForm.email.blurred && signupForm.email.$invalid && !signupForm.email.$error.required && !signupForm.email.$error.emailUniqueness" class="help-block">You have entered invalid e-mail address. It must be between 3 and 254 characters and must not contain any space.</p>
+				<p ng-show="emailCheck.isChecking" class="help-block">Checking e-mail...</p>
+				<p ng-show="signupForm.email.$error.emailUniqueness" class="help-block">This email is already registered.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="signupForm_password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-5 has-feedback" ng-class="{ 'has-error' : signupForm.password.blurred && signupForm.password.$invalid, 'has-success' : signupForm.password.blurred && signupForm.password.$valid }">
+				<input type="password" class="form-control" name="password" id="signupForm_password" placeholder="Password" ng-model="formData.password" ng-blur="OnBlur(signupForm.password)" ng-focus="OnFocus(signupForm.password)" ng-minlength="6" required />
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="signupForm.password.$valid && signupForm.password.blurred"></span>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="signupForm.password.blurred && signupForm.password.$invalid"></span>
+				<p ng-show="signupForm.password.blurred && signupForm.password.$error.required" class="help-block">Please enter your password.</p>
+				<p ng-show="signupForm.password.blurred && signupForm.password.$error.minlength" class="help-block">Password must be 6 or more characters.</p>
+				<p ng-show="signupForm.email.$error.notSameAsUserNameOrEmail" class="help-block">Password cannot be the same as username or email.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-5">
+				<button type="submit" class="btn btn-default" ng-disabled="isSubmitting" ng-hide="isSubmitting">Sign up</button>
+				<button type="submit" class="btn btn-default" ng-disabled="isSubmitting" ng-show="isSubmitting">Signing up...</button>
+			</div>
+		</div>
+	</form>
+	<div class="alert alert-danger" ng-show="!isSubmitted && serverErrorMsg.length > 0">
+		{{serverErrorMsg}}
+	</div>
+	<div ng-show="isSubmitted">
+		Thanks for signing up!<br />Please activate your account by clicking a link in an e-mail sent to your e-mail address '{{formData.email}}'.
+	</div>
+</div>

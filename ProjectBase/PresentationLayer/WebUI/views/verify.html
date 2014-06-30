@@ -1,0 +1,11 @@
+﻿<div class="container" style="padding: 50px 20px" ng-init="Verify()">
+	<div class="alert alert-info" ng-hide="isVerified || verifyErrorMsg.length > 0">
+		Please wait while activating your account...
+	</div>
+	<div class="alert alert-success" ng-show="isVerified">
+		Congratulations! Your account is now activated. Please <a href="#/login">login by clicking here.</a>
+	</div>
+	<div class="alert alert-danger" ng-show="!isVerified && verifyErrorMsg.length > 0">
+		{{verifyErrorMsg}}
+	</div>
+</div>

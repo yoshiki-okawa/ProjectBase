@@ -1,0 +1,19 @@
+﻿<div class="container" style="padding: 50px 20px" ng-init="LoadUserDetails()">
+	<h2>Account</h2>
+	<div ng-show="$root.isLoggedIn && userName.length > 0">
+		<div class="row">
+			<div class="col-sm-2">Username:</div>
+			<div class="col-sm-4">{{userName}}</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">E-mail:</div>
+			<div class="col-sm-4">{{email}}</div>
+		</div>
+	</div>
+	<div class="alert alert-info" ng-show="userName.length == 0">
+		Loading your account details...
+	</div>
+	<div class="alert alert-danger" ng-show="serverErrorMsg.length == 0">
+		{{serverErrorMsg}}
+	</div>
+</div>

@@ -1,0 +1,44 @@
+﻿<div class="container" style="padding: 50px 20px" ng-init="AutoLogin()">
+	<h2>Login</h2>
+	<form name="loginForm" class="form-horizontal" role="form" ng-submit="Submit()" novalidate>
+		<div class="form-group">
+			<label for="loginForm_emailOrUserName" class="col-sm-2 control-label">E-mail or username</label>
+			<div class="col-sm-5 has-feedback" ng-class="{ 'has-error' : loginForm.emailOrUserName.blurred && loginForm.emailOrUserName.$invalid, 'has-success' : loginForm.emailOrUserName.blurred && loginForm.emailOrUserName.$valid }">
+				<input type="text" class="form-control" name="emailOrUserName" id="loginForm_emailOrUserName" placeholder="E-mail or username" ng-model="formData.emailOrUserName" ng-blur="OnBlur(loginForm.emailOrUserName)" ng-focus="OnFocus(loginForm.emailOrUserName)" ng-pattern="/^\S+$/" ng-minlength="3" ng-maxlength="254" required />
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.emailOrUserName.$valid && loginForm.emailOrUserName.blurred"></span>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="loginForm.emailOrUserName.blurred && loginForm.emailOrUserName.$invalid"></span>
+				<p ng-show="loginForm.emailOrUserName.blurred && loginForm.emailOrUserName.$error.required" class="help-block">Please enter your e-mail address or username.</p>
+				<p ng-show="loginForm.emailOrUserName.blurred && !loginForm.emailOrUserName.$error.required && loginForm.emailOrUserName.$invalid" class="help-block">You have entered invalid e-mail address or username. It must be between 3 and 254 characters and must not contain any space.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="loginForm_password" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-5 has-feedback" ng-class="{ 'has-error' : loginForm.password.blurred && loginForm.password.$invalid, 'has-success' : loginForm.password.blurred && loginForm.password.$valid }">
+				<input type="password" class="form-control" name="password" id="loginForm_password" placeholder="Password" ng-model="formData.password" ng-blur="OnBlur(loginForm.password)" ng-focus="OnFocus(loginForm.password)" ng-minlength="6" required />
+				<span class="glyphicon glyphicon-ok form-control-feedback" ng-show="loginForm.password.$valid && loginForm.password.blurred"></span>
+				<span class="glyphicon glyphicon-remove form-control-feedback" ng-show="loginForm.password.blurred && loginForm.password.$invalid"></span>
+				<p ng-show="loginForm.password.blurred && loginForm.password.$error.required" class="help-block">Please enter your password.</p>
+				<p ng-show="loginForm.password.blurred && loginForm.password.$error.minlength" class="help-block">Password must be 6 or more characters.</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-5">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="formData.rememberMe"> Remember me
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-5">
+				<button type="submit" class="btn btn-default" ng-disabled="isSubmitting" ng-hide="isSubmitting">Login</button>
+				<button type="submit" class="btn btn-default" ng-disabled="isSubmitting" ng-show="isSubmitting">Loging in...</button>
+				&nbsp;<a href="#/resetPassword">Forgotten password?</a>
+			</div>
+		</div>
+	</form>
+	<div class="alert alert-danger" ng-show="serverErrorMsg.length > 0">
+		{{serverErrorMsg}}
+	</div>
+</div>

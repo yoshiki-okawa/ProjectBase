@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>Project Base</title>
+	<base href="/" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link href="styles/bootstrap.min.css" rel="stylesheet" />
+	<link href="styles/main.css" rel="stylesheet" />
+
+	<script src="scripts/jquery-1.10.2.min.js"></script>
+	<script src="scripts/angular.min.js"></script>
+	<script src="scripts/angular-route.min.js"></script>
+	<script src="scripts/angular-cookies.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<script src="scripts/jquery.signalR-2.1.0.min.js"></script>
+	<script src="/PBService/signalr/hubs"></script>
+	<script src="scripts/ts.js"></script>
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#/">Project Base</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul ng-if="!$root.isLoggedIn" class="nav navbar-nav navbar-right">
+						<li><a href="#/login">Login</a></li>
+						<li><a href="#/signup">Sign up</a></li>
+					</ul>
+					<ul ng-if="$root.isLoggedIn" class="nav navbar-nav navbar-right">
+						<li><a href="#/account">{{$root.userName}}</a></li>
+						<li><a href="#/logout">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<div ng-view></div>
+</body>
+</html>
