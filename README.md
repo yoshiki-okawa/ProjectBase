@@ -17,6 +17,7 @@ Visual Studio 2013 with Update 2 http://www.visualstudio.com/downloads/download-
 ### 1. Download source codes
 
 Clone https://github.com/yoshikiokawa/ProjectBase.git
+
 I use TortoiseGit. https://code.google.com/p/tortoisegit/wiki/Download
 
 ### 2. Install SSL certificate for localhost:8000 if required (Recommended)
