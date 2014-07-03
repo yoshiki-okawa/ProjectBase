@@ -34,7 +34,7 @@ Open command prompt and run the following command:
 ```
 netsh http add sslcert ipport=0.0.0.0:8000 certhash=0000000000003ed9cd0c315bbb6dc1c08da5e6 appid={00112233-4455-6677-8899-AABBCCDDEEFF} 
 ```
-Replace certhash with the thumbprint and appid with any GUID.
+Replace certhash with the thumbprint found above and appid with any GUID.
 
 ### 3. Use 64 bit IIS Express (Optional)
 
