@@ -101,6 +101,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="TestsBase.cs" />
     <Compile Include="BLLUserAuthTests.cs" />
     <Compile Include="DALDbEntityTests.cs" />
