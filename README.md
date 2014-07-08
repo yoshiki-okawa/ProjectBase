@@ -1,7 +1,7 @@
 Project Base
 ===========
 
-Base project for medium to large software. .NET, WebAPI, OWIN self host, SignalR, SPA using AngularJS, MS Unity, OAuth, Multilayered architecture
+Base project template for medium to large software. .NET, WebAPI, OWIN self host, SignalR, SPA using AngularJS, MS Unity, OAuth, Multilayered architecture
 
 ## Introduction
 
